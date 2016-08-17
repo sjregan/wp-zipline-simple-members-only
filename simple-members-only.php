@@ -88,7 +88,7 @@ function simple_members_only()
 			$path = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);
 			
 			foreach ($allowedUrls as $url) {
-				if (strpos($path, $url) !== 0) {
+				if (strpos($path, $url) === 0) {
 					$valid = true;
 				}
 			}
