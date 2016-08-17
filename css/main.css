@@ -1,0 +1,14 @@
+.btn-style{
+	border : solid 0px #ffffff;
+	border-radius : 7px;
+	moz-border-radius : 7px;
+	font-size : 17px;
+	color : #ffffff;
+	padding : 5px 10px;
+	background-color : #0074a2;
+
+}
+
+.btn-style:hover {
+	cursor:pointer;
+}
