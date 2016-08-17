@@ -1,11 +1,11 @@
 <?php
 /* 
-Plugin Name: Simple Members Only
-Plugin URI:  http://www.stevenfernandez.co.uk/wordpress-plugins/
-Description: "Simple Members Only" is a simple way to make your whole website only viewable to members who are logged in. You will be able to assign a page where non-members are redirected or choose for all non-members to just be directed to the login page. Make your wordpress website a members only website in only a few clicks!
-Version: 1.0.6
-Author: Steven Fernandez
-Author URI: http://www.stevenfernandez.me
+Plugin Name: Zipline Simple Members Only
+Plugin URI:  http://wearezipline.com/wordpress-plugins/
+Description: "Zipline Simple Members Only" is a simple way to make your whole website only viewable to members who are logged in. You will be able to assign a page where non-members are redirected or choose for all non-members to just be directed to the login page. Make your wordpress website a members only website in only a few clicks! An extension of 'Simple Members Only' by Steven Fernandez. Added ability to whitelist URLs.
+Version: 2.0.0
+Author: Sam Regan & Steven Fernandez
+Author URI: http://wearezipline.com
 
  === RELEASE NOTES ===
     29-04-2014 - v1.0.0 - first version
@@ -13,7 +13,7 @@ Author URI: http://www.stevenfernandez.me
     14-05-2016 - v1.0.4 - Compatible with WP version 4.5.2 and bug fix
     19-05-2016 - v1.0.5 - Bug fix and code update
     19-05-2016 - v1.0.6 - Bug fix
-
+	17-08-2016 - v2.0.0 - Added ability to whitelist URLs
     */
 
 register_activation_hook(__FILE__,'simple_members_only_setup_options_page');
@@ -51,7 +51,8 @@ function simple_members_only_setup_options_page()
 		'redirect_to' => 'login',
 		'login_redirect_to' => 'dashboard',
 		'redirect_url' => '',
-		'redirect' => TRUE
+		'redirect' => TRUE,
+		'allowed_urls' => '',
 	);
 		
 	if (empty($simple_members_only_option)){ 
@@ -76,26 +77,27 @@ function simple_members_only()
 	
 	global $currenturl, $simple_members_only_option, $errormsg, $userdata, $current_user, $wpurl;
 	
+	$allowedUrls = explode(',', !empty($simple_members_only_option) ? $simple_members_only_option['allowed_urls'] : '');
 	$redirection = members_only_createredirect();
 	
 	if (empty($userdata->ID)) //Check if user is logged in
 	{	
-
-		if ($currenturl == $redirection || 
-				$currenturl == $redirection.'/' 
-				) 		
-		{
-			// Do Nothing
+		$valid = ($currenturl == $redirection || $currenturl == $redirection.'/');
+		
+		if (!$valid && $allowedUrls) {
+			$path = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);
+			
+			foreach ($allowedUrls as $url) {
+				if (strpos($path, $url) !== 0) {
+					$valid = true;
+				}
+			}
 		}
-		else 
-		{
+			
+		if (!$valid) {
 			//Redirect Page
 			members_only_redirect($redirection);
 		}		
-	}
-	else //User is logged in
-	{
-		//Do nothing
 	}
 }
 
@@ -178,7 +180,8 @@ function simple_members_only_optionions_page()
 		'redirect_to' => $_POST['redirect_to'],
 		'login_redirect_to' => $_POST['login_redirect_to'],
 		'redirect_url' => $_POST['redirect_url'],
-		'redirect' => $_POST['redirect']
+		'redirect' => $_POST['redirect'],
+		'allowed_urls' => $_POST['allowed_urls'],
 	);
 	
 	update_option('simple_members_only_optionions', $optionarray_update);
@@ -269,6 +272,10 @@ function simple_members_only_optionions_page()
 			<th width="200px" scope="row">After Login Redirect to</th>
 			<td width="100px"><select name="login_redirect_to" id="login_redirect_to_inp"><?php echo $login_redirectoptions ?></select></td>
 			<td><span style="color: #555; font-size: .85em;">Choose where the Member is redirected to after login in.</span></td>
+		</tr>
+		<tr valign="top">
+			<th width="200px" scope="row">Allowed URL prefixes</th>
+			<td colspan="2"><input type="text" name="allowed_urls" id="allowed_urls_inp" value="<?php echo $optionarray_def['allowed_urls']; ?>" size="60" />
 		</tr>
 	</table>
 	

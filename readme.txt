@@ -1,19 +1,18 @@
-=== Simple Members Only ===
+=== Zipline Simple Members Only ===
 
-Plugin Name: Simple Members Only
-Contributors: stevenfernandez
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fernandez.steven@gmail.com&item_name=Simple Members Only Wordpress Plugin Development&currency_code=GBP
-Tags: Simple Members Only, members plugin, members, members only, members area, members only website, members only blog
-Author: Steven Fernandez
+Plugin Name: Zipline Simple Members Only
+Contributors: stevenfernandez,sam regan
+Tags: Zipline Simple Members Only, members plugin, members, members only, members area, members only website, members only blog
+Author: Steven Fernandez & Sam Regan
 Requires at least: 3.5
-Tested up to: 4.0
-Stable tag: 1.0.6
+Tested up to: 4.6
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-"Simple Members Only" is a simple way to make your whole website only viewable to members who are logged in. You will be able to assign a page where non-members are redirected or choose for all non-members to just be directed to the login page. Make your wordpress website a members only website in only a few clicks!
+"Zipline Simple Members Only" is a simple way to make your whole website only viewable to members who are logged in. You will be able to assign a page where non-members are redirected or choose for all non-members to just be directed to the login page. Make your wordpress website a members only website in only a few clicks!
 
 == Installation ==
 
@@ -41,5 +40,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 = 1.0.6 =
 * Bug fix
+
+= 2.0.0 =
+* Added ability to whitelist URLs
 
 
