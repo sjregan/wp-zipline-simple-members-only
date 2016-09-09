@@ -4,7 +4,7 @@ Plugin Name: Zipline Simple Members Only
 Plugin URI:  http://wearezipline.com/wordpress-plugins/
 Description: "Zipline Simple Members Only" is a simple way to make your whole website only viewable to members who are logged in. You will be able to assign a page where non-members are redirected or choose for all non-members to just be directed to the login page. Make your wordpress website a members only website in only a few clicks! An extension of 'Simple Members Only' by Steven Fernandez. Added ability to whitelist URLs.
 Version: 2.0.0
-Author: Sam Regan & Steven Fernandez
+Author: Zipline & Steven Fernandez
 Author URI: http://wearezipline.com
 
  === RELEASE NOTES ===
