@@ -3,7 +3,7 @@
 Plugin Name: Zipline Simple Members Only
 Contributors: stevenfernandez,sam regan
 Tags: Zipline Simple Members Only, members plugin, members, members only, members area, members only website, members only blog
-Author: Steven Fernandez & Sam Regan
+Author: Zipline & Steven Fernandez
 Requires at least: 3.5
 Tested up to: 4.6
 Stable tag: 2.0.0
